@@ -99,7 +99,7 @@ footer a:hover {
     right: 24px;
     width: 48px;
     height: 48px;
-    background-color: #0d6efd;
+    background-color: #f97316;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -124,7 +124,7 @@ footer a:hover {
 }
 
 .back-to-top:hover {
-    background-color: #0b5ed7;
+    background-color: #cc5e0f;
 }
 .btn-search {
     background: linear-gradient(135deg, #f97316, #fb923c);
