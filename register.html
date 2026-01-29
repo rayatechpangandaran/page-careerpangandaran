@@ -8,97 +8,12 @@
 <!-- Bootstrap & Icon -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/register.css">
 
-<style>
-body {
-    background: linear-gradient(135deg, #ff8c00, #ffb347);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.form-wrapper {
-    background: #fff;
-    border-radius: 16px;
-    max-width: 600px;
-    width: 100%;
-    padding: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.15);
-    animation: fadeUp .4s ease;
-}
-
-@media (max-width: 767px) {
-    .form-wrapper {
-        margin: 20px 14px; 
-        padding: 20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .form-wrapper {
-        margin: 60px auto;
-        padding: 28px;
-    }
-}
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.step-indicator {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 25px;
-}
-
-.step-indicator span {
-    flex: 1;
-    height: 4px;
-    background: #eee;
-    border-radius: 4px;
-}
-
-.step-indicator span.active {
-    background: #ff8c00;
-}
-
-.form-step {
-    display: none;
-}
-
-.form-step.active {
-    display: block;
-}
-
-.btn-orange {
-    background: linear-gradient(135deg, #ff8c00, #ffb347);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-}
-
-.btn-orange:hover {
-    opacity: .9;
-}
-
-small.hint {
-    color: #777;
-}
-.is-invalid {
-    border-color: #dc3545;
-}
-
-</style>
 </head>
 
 <body>
+
 
 <div class="form-wrapper">
 
@@ -247,76 +162,6 @@ small.hint {
     </form>
 </div>
 
-
-<script>
-const steps = document.querySelectorAll('.form-step');
-const indicators = document.querySelectorAll('.step-indicator span');
-const nextBtns = document.querySelectorAll('.nextBtn');
-const prevBtns = document.querySelectorAll('.prevBtn');
-const submitBtn = document.getElementById('submitBtn');
-
-let current = 0;
-
-function updateStep() {
-    steps.forEach((step, i) => {
-        step.classList.toggle('active', i === current);
-        indicators[i].classList.toggle('active', i <= current);
-    });
-}
-
-// VALIDASI STEP
-function validateStep(stepIndex) {
-    const inputs = steps[stepIndex].querySelectorAll(
-        'input:not([type="file"]):not([type="checkbox"]), textarea, select'
-    );
-
-    for (let input of inputs) {
-        if (input.value.trim() === "") {
-            input.classList.add('is-invalid');
-            return false;
-        } else {
-            input.classList.remove('is-invalid');
-        }
-    }
-    return true;
-}
-
-// NEXT
-nextBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if (validateStep(current)) {
-            current++;
-            updateStep();
-        }
-    });
-});
-
-// PREV
-prevBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        current--;
-        updateStep();
-    });
-});
-
-// VALIDASI CHECKBOX STEP AKHIR
-const finalCheckboxes = document.querySelectorAll(
-    '.form-step:last-child input[type="checkbox"]'
-);
-
-finalCheckboxes.forEach(cb => {
-    cb.addEventListener('change', () => {
-        submitBtn.disabled = !Array.from(finalCheckboxes).every(c => c.checked);
-    });
-});
-
-// SUBMIT
-document.getElementById('businessForm').addEventListener('submit', function(e) {
-    if (submitBtn.disabled) {
-        e.preventDefault();
-    }
-});
-</script>
-
+<script src="assets/register.js"></script>
 </body>
 </html>
