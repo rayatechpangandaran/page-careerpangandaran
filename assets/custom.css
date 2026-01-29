@@ -95,7 +95,6 @@ footer a:hover {
     text-decoration: underline;
 }
 .back-to-top {
-    position: fixed;
     bottom: 24px;
     right: 24px;
     width: 48px;
